@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { BsTwitter } from "react-icons/bs";
+import { SiDungeonsanddragons } from "react-icons/si";
 
 const SidebarLogo = () => {
   const router = useRouter();
@@ -10,7 +10,7 @@ const SidebarLogo = () => {
       className="flex h-14 w-14 cursor-pointer items-center justify-center rounded-full p-4
         transition hover:bg-blue-300 hover:bg-opacity-30"
     >
-      <BsTwitter size={28} color="white" />
+      <SiDungeonsanddragons size={28} color="white" />
     </div>
   );
 };
