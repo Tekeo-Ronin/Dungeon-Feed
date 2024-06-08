@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ message: "Method not allowed" });
   }
   try {
-    const { userId } = req.method === "POST" ? req.body : req.query;
+    const { userId } = req.body; // Отримуємо userId з тіла запиту
     const { currentUser } = await serverAuth(req, res);
     if (!userId || typeof userId !== "string") {
       return res.status(400).json({ message: "Invalid request" });
@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (req.method === "POST") {
       updatedFollowingIds.push(userId);
-
+    
       try {
         await prisma.notification.create({
           data: {
