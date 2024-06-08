@@ -5,7 +5,7 @@ import serverAuth from "@/libs/serverAuth";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST" && req.method !== "DELETE") {
-    return res.status(405).json({ message: "Method not allowed" });
+    return res.status(405).end();
   }
 
   try {
@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(404).json({ message: "Post not found" });
     }
 
-    let updatedLikedIds = [...(post.likedIds || [])];
+    let updatedLikedIds = [...(post.likesIds || [])];
 
     if (req.method === "POST") {
       updatedLikedIds.push(currentUser.id);
@@ -66,7 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         id: postId,
       },
       data: {
-        likedIds: updatedLikedIds,
+        likesIds: updatedLikedIds,
       },
     });
 
